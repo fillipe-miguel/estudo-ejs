@@ -4,18 +4,38 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 
-let user = {
-	id: 0,
-	name: 'Fernando',
-	phone: '(51)99525-5448',
-	endereco: 'Rua castelo branco, n°234',
-};
+let users = [
+	{
+		id: 0,
+		name: 'Fernando',
+		phone: '(51)99525-5448',
+		endereco: 'Rua castelo branco, n°234',
+	},
+	{
+		id: 1,
+		name: 'Robson',
+		phone: '(51)99123-5238',
+		endereco: 'Rua fernando de noronha, n°24',
+	},
+	{
+		id: 2,
+		name: 'Adriana',
+		phone: '(51)93091-2934',
+		endereco: 'Rua porto-alegre, n°1234',
+	},
+];
 
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-	res.render('view', user);
+	// O objeto passado aqui tem que ser a mesma key passada no documento view!!!!!
+	res.render('home', { users });
+});
+
+app.get('/about', (req, res) => {
+	res.render('about');
 });
 
 // OLD BOY
